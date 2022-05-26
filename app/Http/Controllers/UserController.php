@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\CustomUser;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterMail;
 
 class UserController extends Controller
 {
@@ -14,25 +17,32 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $form_data = $request->validate([
+        $request->validate([
             'name' => 'required|max:80',
-            'email' => 'required|email|unique:user|max:255',
-            'plz' => 'required|max:255',
-            'ort' => 'required|max:255',
-            'telefonnummer' => 'required|max:255',
-            'password' => 'min:8|confirmed',
-            'password1' => 'min:8',
-            'agbs' => 'required|boolean',
+            'email' => 'required|email',
+            'plz' => 'required|max:5',
+            'ort' => 'required',
+            'telefonnummer' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
-        User::create($form_data);
+        $email = $request->get('email');
+        Mail::to($email)->send(new RegisterMail($request));
 
-        return redirect('/users');
+        $user = $this->create($request);
+
+        return redirect("/email/verify");
     }
 
-
-    public function login()
+    public function create($data)
     {
-        return view('auth.login');
+        $user = new CustomUser;
+        $user->name = $data->name;
+        $user->email = $data->email;
+        $user->plz = $data->plz;
+        $user->ort = $data->ort;
+        $user->telefonnummer = $data->telefonnummer;
+        $user->password = Hash::make($data->password);
+        return $user->save();
     }
 }
