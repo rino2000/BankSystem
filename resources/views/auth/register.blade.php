@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@include('welcome')
-=======
 <h1>Register</h1>
->>>>>>> 29361b1fe6a52350e83e6262cd28dc01688bf174
 
 <style>
     label {
