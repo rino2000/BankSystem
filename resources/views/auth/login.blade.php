@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 @include('welcome')
+=======
+<form action="/" method="post">
+    {{-- @csrf --}}
+    {{ csrf_field() }}
+>>>>>>> 29361b1fe6a52350e83e6262cd28dc01688bf174
 
-@component('title')
-<title>Login</title>
+    <label for="email">Email:</label>
+    <input type="text" name="email" id="">
 
+<<<<<<< HEAD
 @component('context')
 <div class="container justify-content-center">
     <h1>Login</h1>
@@ -25,3 +32,10 @@
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 </div>
+=======
+    <label for="password">Password:</label>
+    <input type="password" id="password">
+
+    <button type="submit">Login</button>
+</form>
+>>>>>>> 29361b1fe6a52350e83e6262cd28dc01688bf174
