@@ -1,4 +1,4 @@
-@include('base')
+@include('welcome')
 
 @component('title')
 <title>Registration</title>
