@@ -6,9 +6,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-
 Route::get('/', function () {
-    return view('base');
+    return view('welcome');
 })->name('index');
 
 Route::get('/users', function () {
@@ -19,8 +18,12 @@ Route::post('/register', [UserController::class, 'register'])->name('register');
 
 Route::get('/register', [UserController::class, 'registerForm'])->name('registerForm');
 
+//Log in user
+Route::post('/user/login',[UserController::class, 'userLogin']);
+
 Route::get('/login', [UserController::class, 'login']);
 
+<<<<<<< HEAD
 
 
 Route::get('/email/verify', function () {
@@ -38,3 +41,5 @@ Route::post('/email/verification-notification', function (Request $request) {
  
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+=======
+>>>>>>> 2c977abe20bcbec7d9c6043926bfeb8945809de1
