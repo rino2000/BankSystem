@@ -12,14 +12,18 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'email',
+        'ort',
         'plz',
         'telefonnummer',
-        'ort',
         'password',
-        'email_token'
     ];
 
     /**
@@ -40,10 +44,4 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // Relationship With Listings
-    public function listings()
-    {
-        return $this->hasMany(Listing::class, 'user_id');
-    }
 }

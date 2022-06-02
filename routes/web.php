@@ -1,40 +1,44 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-
 Route::get('/', function () {
-    return view('base');
+    return view('welcome', ['users' => User::all()]);
 })->name('index');
 
-Route::get('/users', function () {
-    return view('all_users' , ['users' => User::all()]);
-});
 
-Route::post('/register', [UserController::class, 'register'])->name('register');
+//Register form
+Route::get('/register', [RegisterController::class, 'registerForm'])->name('verification.notice');
 
-Route::get('/register', [UserController::class, 'registerForm'])->name('registerForm');
+//Register user
+Route::post('/register', [RegisterController::class, 'register'])->name('registerUser');
 
-Route::get('/login', [UserController::class, 'login']);
-
-
-
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-
+//Send email to registered user
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
- 
     return redirect('/');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+})->name('verification.verify');
 
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
- 
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+//Login form
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+
+
+//Logout user
+Route::get('/logout', function (Request $request) {
+
+    Auth::logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+});
