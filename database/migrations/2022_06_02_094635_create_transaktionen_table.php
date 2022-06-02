@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('transaktionen', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email');
-            $table->string('plz');
-            $table->string('ort');
-            $table->string('telefonnummer');
-            $table->string('password');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('sender');
+            $table->string('empfaenger');
+            $table->double('menge');
+            $table->unsignedInteger('konto_id')->nullable();
+            $table->foreign('konto_id')->references('id')->on('bankkonto')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('transaktionen');
     }
 };
