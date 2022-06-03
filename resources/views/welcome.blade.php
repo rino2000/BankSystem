@@ -10,29 +10,9 @@
 <body>
     @section('content')
     @endsection
-    @if (Auth::check())
+    @auth
         <h1>User is authenticated</h1>
-    @else
-        <h1>User is not authenticated</h1>
-    @endif
-    @foreach ($users as $user)
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Telefonnummer</th>
-                <th>Ort</th>
-                <th>Plz</th>
-            </tr>
-            <tr>
-                <td>{{ $user->name }} </td>
-                <td>{{ $user->email }} </td>
-                <td>{{ $user->telefonnummer }} </td>
-                <td>{{ $user->ort }} </td>
-                <td>{{ $user->plz }} </td>
-            </tr>
-        </table>
-    @endforeach
+    @endauth
 </body>
 
 </html>
