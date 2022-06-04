@@ -1,84 +1,80 @@
 @include('welcome')
 
-@component('title')
-<title>Registration</title>
+<style>
+    label {
+        display: table-row;
+        padding: 10px 10px 10px 10px;
+    }
 
-@component('context')
+    form {
+        display: table;
+    }
 
+    input {
+        display: table-cell;
+        margin-bottom: 20px;
+    }
+
+    .alert-alert-danger {
+        margin-top: -20px;
+        color: #ff0000;
+    }
+
+</style>
 
 <div class="container justify-content-center">
-    <h1>Registration</h1>
-    <form action="{{ route('register') }}" method="POST">
+    <h1>Register</h1>
+    <form action="{{ @route('registerUser') }}" method="POST" style="padding:10px">
         @csrf
 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" value="{{ old('name') }}" aria-describedby="emailHelp">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
             @error('name')
-            <p style="color:red">{{$message}}</p>
+                <div class="alert-alert-danger">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" value="{{ old('email') }}" aria-describedby="emailHelp">
-            @error('email')
-            <p style="color:red">{{$message}}</p>
-            @enderror
-        </div>
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}">
+        @error('email')
+            <div class="alert-alert-danger">{{ $message }}</div>
+        @enderror
 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">PLZ</label>
-            <input type="text" class="form-control" id="plz" value="{{ old('plz') }}" aria-describedby="emailHelp">
-            @error('plz')
-            <p style="color:red">{{$message}}</p>
-            @enderror
-        </div>
+        <label for="ort">Ort:</label>
+        <input type="text" class="form-control" name="ort" id="ort" value="{{ old('ort') }}">
+        @error('ort')
+            <div class="alert-alert-danger">{{ $message }}</div>
+        @enderror
 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Ort</label>
-            <input type="text" class="form-control" id="ort" value="{{ old('ort') }}" aria-describedby="emailHelp">
-            @error('ort')
-            <p style="color:red">{{$message}}</p>
-            @enderror
-        </div>
+        <label for="plz">Plz:</label>
+        <input type="text" class="form-control" name="plz" id="plz" value="{{ old('plz') }}">
+        @error('plz')
+            <div class="alert-alert-danger">{{ $message }}</div>
+        @enderror
 
+        <label for="telefonnummer">Telefonnummer:</label>
+        <input type="text" class="form-control" name="telefonnummer" id="telefonnummer"
+            value="{{ old('telefonnummer') }}">
+        @error('telefonnummer')
+            <div class="alert-alert-danger">{{ $message }}</div>
+        @enderror
 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Telefonnummer</label>
-            <input type="text" class="form-control" id="telefonnummer" value="{{ old('telefonnummer') }}"
-                aria-describedby="emailHelp">
-            @error('telefonnummer')
-            <p style="color:red">{{$message}}</p>
-            @enderror
-        </div>
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" id="password" value="{{ old('password') }}">
+        @error('password')
+            <div class="alert-alert-danger">{{ $message }}</div>
+        @enderror
 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" value="{{ old('password') }}"
-                aria-describedby="emailHelp">
-            @error('password')
-            <p style="color:red">{{$message}}</p>
-            @enderror
-        </div>
+        <label for="password_confirmation">Password Confirmation:</label>
+        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation"
+            value="{{ old('password_confirmation') }}">
+        @error('password_confirmation')
+            <div class="alert-alert-danger">{{ $message }}</div>
+        @enderror
+        <br>
 
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Wiederhole Password</label>
-            <input type="password" class="form-control" value="{{ old('password1') }}" id="password1">
-            @error('password1')
-            <p style="color:red">{{$message}}</p>
-            @enderror
-        </div>
-
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" id="agbs" for="exampleCheck1">Nutzungsbedingungen und
-                Datenschutzerklärung</label>
-            @error('agbs')
-            <p style="color:red">{{$message}}</p>
-            @enderror
-        </div>
-
-        <button type="submit" class="btn btn-primary">Registrieren</button>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
+
 </div>

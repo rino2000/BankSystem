@@ -148,8 +148,32 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'unique' => 'Email ist schon vergeben 🤭',
+            'required' => '🖕 We need to now your email 🖕',
+            'max' => 'Your email is too long!',
+        ],
+        'password' => [
+            'confirmed' => 'Wiederholtes Password ist falsch',
+            'required' => 'Willst du nicht dein Konto schützen ? 🙄',
+            'min' => 'Password muss mindestend 8 Zeichen lang sein',
+            'max' => 'Password ist zu lang',
+        ],
+        'name' => [
+            'required' => 'Wir mussen wissen wie du heisst',
+            'max' => 'Name ist zu lang'
+        ],
+        'plz' => [
+            'required' => 'Wir mussen wissen wo du wohnst 👀',
+            'max' => 'So eine lange Postleizahl gibt es nicht'
+        ],
+        'telefonnummer' => [
+            'required' => 'Wen sollen wir sonst anrufen ? 🫤',
+            'max' => 'Telefonnummer ist zu lang'
+        ],
+        'ort' => [
+            'required' => 'Wir mussen wissen wo du wohnst 👀',
+            'max' => 'Ort ist zu lang',
         ],
     ],
 
@@ -164,6 +188,11 @@ return [
     |
     */
 
-    'attributes' => [],
-
+    'attributes' => [
+        'name' => 'name',
+        'ort' => 'ort',
+        'plz' => 'plz',
+        'telefonnummer' => 'telefonnummer',
+        'password' => 'password',
+    ],
 ];

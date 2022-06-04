@@ -1,9 +1,13 @@
 @include('welcome')
 
+<<<<<<< HEAD
 @component('title')
 <title>Login</title>
 
 @component('context')
+=======
+
+>>>>>>> 04d5e62a169b98824209f1506849fb07035d1fa5
 <div class="container justify-content-center">
     <h1>Login</h1>
     <form action="/user/login" method="POST">
