@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\TransaktionController;
+use App\Http\Controllers\BankController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -45,6 +45,9 @@ Route::get('/user/info', function (Request $request) {
     return view('user_info');
 })->name('userInfo');
 
-//Transaktion form
-Route::get('/send', [TransaktionController::class, 'form']);
-Route::post('/send/transaktion', [TransaktionController::class, 'send']);
+Route::get('/send', function () {
+    return view('transaktion');
+});
+
+Route::get('/bankkonto', [BankController::class, 'show'])->name('bankkonto');
+Route::post('/create/bankkonto', [BankController::class, 'create'])->name('createBankkonto');

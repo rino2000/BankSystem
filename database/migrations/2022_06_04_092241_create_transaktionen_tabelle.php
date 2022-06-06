@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('konto_id'); //ist sender
             $table->float('amount');
             $table->string('empfaenger'); //als email
-            $table->timestamps();
             $table->foreign('konto_id')
                 ->references('id')
                 ->on('bankkonto');

@@ -9,8 +9,7 @@ class Transaktion extends Model
 {
     use HasFactory;
 
-    public function bankkontoModel()
-    {
-        return $this->hasMany(Bankkonto::class);
-    }
+    public $timestamps = false;
+
+    protected $table = 'transaktionen';
 }

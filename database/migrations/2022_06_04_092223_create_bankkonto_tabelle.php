@@ -23,7 +23,6 @@ return new class extends Migration
             $table->unsignedInteger('kontonummer');
             $table->unsignedInteger('kartennummer');
             $table->float('guthaben')->default(0.00);
-            $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');

@@ -9,7 +9,12 @@ class Bankkonto extends Model
 {
     use HasFactory;
 
-    public function userModel(){
+    public $timestamps = false;
+
+    protected $table = 'bankkonto';
+
+    public function userModel()
+    {
         return $this->hasMany(User::class);
     }
 }

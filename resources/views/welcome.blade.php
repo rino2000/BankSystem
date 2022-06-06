@@ -14,7 +14,6 @@
     @if (Auth::check())
         <h1>User is authenticated</h1>
     @endif
-
     @yield('content')
 </body>
 
