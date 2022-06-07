@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class BankController extends Controller
 {
-    // return bankkonto form to add data
     public function show()
     {
         return view('bankkonto');
@@ -38,5 +37,10 @@ class BankController extends Controller
         $bankkonto->save();
 
         return redirect('/');
+    }
+
+    public function info()
+    {
+        return view('konto_info', ['konto' => Bankkonto::where('user_id', Auth::id())->get()]);
     }
 }

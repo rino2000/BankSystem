@@ -7,14 +7,13 @@
             @csrf
             <div class="form-group">
                 <label>Empfaenger</label>
-                <input type="email" class="form-control" id="empfaengerEmail" aria-describedby="emailHelp"
-                    placeholder="test@test.com">
+                <input type="text" class="form-control" id="ban" name="iban" placeholder="test@test.com">
             </div>
             <br>
             <div class="form-group">
                 <label>Amount</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="12.00">
+                    <input type="text" name="amount" id="amount" class="form-control" placeholder="12.00">
                     <div class="input-group-append">
                         <span class="input-group-text">€</span>
                     </div>

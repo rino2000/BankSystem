@@ -12,4 +12,9 @@ class Transaktion extends Model
     public $timestamps = false;
 
     protected $table = 'transaktionen';
+
+    public function bankkonten()
+    {
+        return $this->hasMany(Bankkonto::class);
+    }
 }

@@ -13,7 +13,7 @@ class Bankkonto extends Model
 
     protected $table = 'bankkonto';
 
-    public function userModel()
+    public function users()
     {
         return $this->hasMany(User::class);
     }

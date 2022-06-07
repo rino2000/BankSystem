@@ -45,4 +45,19 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // public function bankkonto()
+    // {
+    //     return $this->belongsTo(Bankkonto::class);
+    // }
+
+    // public function transaktionen()
+    // {
+    //     return $this->belongsTo(Transaktion::class);
+    // }
+
+    public function konten()
+    {
+        return $this->hasManyThrough(Bankkonto::class, Transaktion::class);
+    }
 }
